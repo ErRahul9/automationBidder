@@ -1,8 +1,6 @@
-import json
 
 from rediscluster import RedisCluster
-
-# import rediscluster
+import psycopg2
 
 
 def connectToCache(host,port,keyVal):
@@ -17,16 +15,27 @@ def connectToCache(host,port,keyVal):
 
 
 def connectTopostgres():
-    print("connecting to postgres")
+    conn = psycopg2.connect(
+        host="integration-dev.crvrygavls2u.us-west-2.rds.amazonaws.com",
+        database="qacoredb",
+        user="qacore",
+        port=5432,
+        password="qa#core07#19")
+    cur = conn.cursor()
+    sql = "select * from public.creative_metadata limit 10"
+    results = cur.execute(sql)
+    for rows in cur.fetchall():
+        print(rows)
 
 
 def connectToBeeswax():
     print("connecting to postgres")
 
 '''
-w: 300
-      h: 600
+psql -h integration-devp.crvrygavls2u.us-west-2.rds.amazonaws.com -p 5432 -U qacore -d qacoredb
+Password - qa#core07#19
 
 '''
 
-print(connectToCache("core-dev-bidder-price.pid24g.clustercfg.usw2.cache.amazonaws.com", 6379,"com.dailymail.online"))
+# print(connectToCache("core-dev-bidder-price.pid24g.clustercfg.usw2.cache.amazonaws.com", 6379,"com.dailymail.online"))
+print(connectTopostgres())
