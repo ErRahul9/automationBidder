@@ -1,24 +1,34 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import json
+import sys
 
+import enumerator
+import re
+import fileinput
 class bidderAutomation():
-    def __init__(self):
-        jsonObject = self.jsonObject
-
-    def setUp(self):
-        print("setting up data in caches and postgres database")
 
 
-    def readJson(self,jsonFileName):
-        with open(jsonFileName) as f:
-            jsonObject = json.dumps(f.read())
-        return jsonObject
+    def __init__(self, jsonFileName, bidderFile,testCase):
+        self.jsonfile = jsonFileName
+        self.bidderfile = bidderFile
+        self.test = testCase
 
-    def updateBidderFileWithTestData(self):
-        print("updating bidder file")
+
+    def setVariablesFromJsonFile(self):
+        with open(self.jsonfile) as jsonFile:
+            data = json.load(jsonFile)
+            testData = data.get(self.test)
+        for values in enumerator.enumerator:
+            regex = re.compile(r'\b' + str(values.value) + r'\b')
+            for line in fileinput.input(self.bidderfile,inplace=1):
+                if len(re.findall(regex, line)) > 0:
+                    line = line.replace(line,re.findall(regex, line)[0] + " : " + str(testData.get(values.name)))
+                    sys.stdout.write(" "*6+line+'\n')
+                else:
+                    sys.stdout.write(line)
+
+
+
+
 
     def movingFiles(self):
         print("moving bidder file to the bidder folder")
@@ -26,18 +36,23 @@ class bidderAutomation():
     def runningBidderAPICode(self):
         print("run bidder API code ")
 
-    def tesrDown(self):
+    def tearDown(self):
         print("code to teardown test data")
 
 
 
+data = bidderAutomation("fixtures/testData.json","fixtures/bidder_try_1.txt","BidderTestPositiveWithBidAmount")
+data.setVariablesFromJsonFile()
 
-
-
-
-    # Press the green button in the gutter to run the script.
-    if __name__ == '__main__':
-        print(readJson("resources/testData.json"))
-
+# print(bidderAutomation.updateBidderFileWithTestData("resources/testData.json"))
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+#         print(updateBidderFileWithTestData("fixtures/testData.json"))
+
+'''
+read the json file pass the data to args
+read the text file and look for specific text
+update the line 3 spaces after the text
+save the file
+
+'''
