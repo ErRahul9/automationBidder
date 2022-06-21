@@ -1,58 +1,130 @@
-import json
-import sys
-
-import enumerator
-import re
-import fileinput
-class bidderAutomation():
-
-
-    def __init__(self, jsonFileName, bidderFile,testCase):
-        self.jsonfile = jsonFileName
-        self.bidderfile = bidderFile
-        self.test = testCase
+import time
+from connectors import connectToCache
+from bidderAutomation import *
+import subprocess
+import shutil
+import os
 
 
-    def setVariablesFromJsonFile(self):
-        with open(self.jsonfile) as jsonFile:
-            data = json.load(jsonFile)
-            testData = data.get(self.test)
-        for values in enumerator.enumerator:
-            regex = re.compile(r'\b' + str(values.value) + r'\b')
-            for line in fileinput.input(self.bidderfile,inplace=1):
-                if len(re.findall(regex, line)) > 0:
-                    line = line.replace(line,re.findall(regex, line)[0] + " : " + str(testData.get(values.name)))
-                    sys.stdout.write(" "*6+line+'\n')
+class main():
+
+    def __init__(self):
+        self.ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
+        self.resourcesPath = os.path.join(self.ROOTDIR, "resources")
+        self.fixturesPath = os.path.join(self.ROOTDIR, "fixtures")
+
+    def createListOfTestCases(self):
+        jsonPath = os.path.join(self.fixturesPath,"testData.json")
+        with open(jsonPath) as jFile:
+            data = json.load(jFile)
+            testPath = os.path.join(self.fixturesPath,"testCases.txt")
+            with open(testPath,"w+") as f:
+                for keys in data.keys():
+                    f.write(keys+'\n')
+            f.close()
+        jFile.close()
+    def loadData(self, data):
+        caches = ["insertMetadataCache", "insertBidderObject", "insertRecencyData", "insertHouseholdScore"]
+        for funcs in caches:
+            method = getattr(data, funcs)
+            methodCall = method()
+            key = methodCall[0]
+            metadata = methodCall[1]
+            cache = methodCall[2]
+            retVal = connectToCache(cache, 6379, metadata.get("mapping"), key, "insert")
+            print(retVal)
+
+    def updateFile(self, data):
+        # data = bidderAutomation("../fixtures/testData.json", "../fixtures/bidder_try_1.txt","BidderTestPositiveWithBidAmount")
+
+        print("updating from json file")
+        data.setVariablesFromJsonFile()
+        print("fixing string column types")
+        data.fixStringColumns()
+
+
+    def runBeeswaxCommand(self):
+
+        src = os.path.join(self.fixturesPath)
+
+        trg = os.path.join(self.ROOTDIR,'beeswaxCode/beeswax/tools/bid/bid')
+        files = os.listdir(src)
+        for file in files:
+            if "bidder" in file:
+                shutil.copy2(os.path.join(src, file), trg)
+        change = os.chdir(trg)
+        retData = subprocess.run(['./bidding_agent_requests_generator', 'bidder_try_1.txt',
+                                  'http://bidder.coredev.west2.steelhouse.com/beeswax/bidder',
+                                  '--path-to-responses-file', '../../../../../resources/output.txt'])
+        print(retData.returncode)
+        return retData.returncode
+
+    def teardown(self, data):
+        caches = ["insertMetadataCache", "insertBidderObject", "insertRecencyData", "insertHouseholdScore"]
+        retData = []
+        # caches = ["insertMetadataCache"]
+        for funcs in caches:
+            method = getattr(data, funcs)
+            methodCall = method()
+            key = methodCall[0]
+            metadata = methodCall[1]
+            cache = methodCall[2]
+            retVal = connectToCache(cache, 6379, metadata.get("mapping"), key, "delete")
+            retData.append("deleted :  " + key + "   :" + str(retVal))
+
+        return retData
+
+    def readResults(self):
+        retStatus = 0
+        lineitem = 0
+        retPrice = 0
+        outPath = os.path.join(self.resourcesPath, "output.txt")
+        with open(outPath) as f_results:
+            for line in f_results.read().split("\n"):
+                if "Error" in line or "204" in line:
+                    retStatus = 204
+                    lineItem = "fail"
+                    retPrice = 0
                 else:
-                    sys.stdout.write(line)
+                    if "Status" in line and "200" in line:
+                        retStatus = 200
+                    if "line_item_id" in line:
+                        lineitem = line.split(":")[1].strip()
+                    if "bid_price_micros" in line:
+                        retPrice = line.split(":")[1].strip()
+
+        return retStatus, lineitem, retPrice
+
+        # print(line)
 
 
+if __name__ == "__main__":
+    temp = 5
+    print("updating tests")
+    main().createListOfTestCases()
+    fixPath = os.path.join(main().fixturesPath, "testCases.txt")
+    testCases = open(fixPath)
+    tests = [test for test in testCases.read().split('\n')]
+    for words in tests:
+        if len(words) > 0:
+            data = bidderAutomation(words)
+            # data = bidderAutomation("../fixtures/testData.json", "../fixtures/bidder_try_1.txt", words)
+            print(main().teardown(data))
+            print(main().updateFile(data))
+            print(main().loadData(data))
+            time.sleep(20)
+            main().runBeeswaxCommand()
+        status = main().readResults()[0]
+        if "204" == status:
+            while temp > 0:
+                print("returned 204 running the same lond again +"+temp+" times")
+                time.sleep(30)
+                main().runBeeswaxCommand()
+                status = main().readResults()[0]
+                if status == 200:
+                    main().readResults()
+                    break
+                temp = temp - 1
 
-
-
-    def movingFiles(self):
-        print("moving bidder file to the bidder folder")
-
-    def runningBidderAPICode(self):
-        print("run bidder API code ")
-
-    def tearDown(self):
-        print("code to teardown test data")
-
-
-
-data = bidderAutomation("fixtures/testData.json","fixtures/bidder_try_1.txt","BidderTestPositiveWithBidAmount")
-data.setVariablesFromJsonFile()
-
-# print(bidderAutomation.updateBidderFileWithTestData("resources/testData.json"))
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-#         print(updateBidderFileWithTestData("fixtures/testData.json"))
-
-'''
-read the json file pass the data to args
-read the text file and look for specific text
-update the line 3 spaces after the text
-save the file
-
-'''
+        else:
+            print(main().readResults())
