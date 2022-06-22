@@ -12,6 +12,8 @@ class main():
         self.ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
         self.resourcesPath = os.path.join(self.ROOTDIR, "resources")
         self.fixturesPath = os.path.join(self.ROOTDIR, "fixtures")
+        self.testResults = open(os.path.join(self.resourcesPath, "testResults.txt"),'a')
+
 
     def createListOfTestCases(self):
         jsonPath = os.path.join(self.fixturesPath,"testData.json")
@@ -24,6 +26,7 @@ class main():
             f.close()
         jFile.close()
     def loadData(self, data):
+        retArr =[]
         caches = ["insertMetadataCache", "insertBidderObject", "insertRecencyData", "insertHouseholdScore"]
         for funcs in caches:
             method = getattr(data, funcs)
@@ -32,7 +35,9 @@ class main():
             metadata = methodCall[1]
             cache = methodCall[2]
             retVal = connectToCache(cache, 6379, metadata.get("mapping"), key, "insert")
-            print(retVal)
+            retArr.append(retVal)
+        return retArr
+
 
     def updateFile(self, data):
         # data = bidderAutomation("../fixtures/testData.json", "../fixtures/bidder_try_1.txt","BidderTestPositiveWithBidAmount")
@@ -79,6 +84,7 @@ class main():
         lineitem = 0
         retPrice = 0
         outPath = os.path.join(self.resourcesPath, "output.txt")
+
         with open(outPath) as f_results:
             for line in f_results.read().split("\n"):
                 if "Error" in line or "204" in line:
@@ -95,34 +101,37 @@ class main():
 
         return retStatus, lineitem, retPrice
 
-        # print(line)
+
 
 
 if __name__ == "__main__":
-    temp = 5
-    print("updating tests")
+    temp = 2
+    getCurrentTS = time.time()
     main().createListOfTestCases()
     fixPath = os.path.join(main().fixturesPath, "testCases.txt")
     testCases = open(fixPath)
     tests = [test for test in testCases.read().split('\n')]
+
     for words in tests:
         if len(words) > 0:
             data = bidderAutomation(words)
-            # data = bidderAutomation("../fixtures/testData.json", "../fixtures/bidder_try_1.txt", words)
-            print(main().teardown(data))
-            print(main().updateFile(data))
-            print(main().loadData(data))
+            # print(data)
+            teardown = main().teardown(data)
+            updateFile = main().updateFile(data)
+            loadData = main().loadData(data)
             time.sleep(20)
             main().runBeeswaxCommand()
-        status = main().readResults()[0]
-        if "204" == status:
+            status = main().readResults()[0]
+            main().testResults.write(words+"_"+str(getCurrentTS) +" : "+ str(main().readResults())+'\n')
+        if "200" not in str(status):
             while temp > 0:
-                print("returned 204 running the same lond again +"+temp+" times")
+                print("returned 204 running the same test again "+str(temp)+" times")
                 time.sleep(30)
                 main().runBeeswaxCommand()
                 status = main().readResults()[0]
                 if status == 200:
                     main().readResults()
+                    main().testResults.write(words + "_" + str(getCurrentTS) + " : " + str(main().readResults())+'\n')
                     break
                 temp = temp - 1
 

@@ -2,7 +2,7 @@ import enum
 
 
 class enumerator(enum.Enum):
-    domainId = "domain"
+    domainId = ["domain","bundle"]
     campaignid = "campaign_id"
     creativeId = ["creative_ids","creative_id"]
     advertiserId = "advertiser_id"

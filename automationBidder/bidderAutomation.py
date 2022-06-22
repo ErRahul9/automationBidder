@@ -10,7 +10,7 @@ class bidderAutomation():
 
     def __init__(self,testCase):
         self.test = testCase
-        self.columnsToBeFixed = ["domain","ip"]
+        self.columnsToBeFixed = ["domain","ip","bundle"]
         self.ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
         self.resourcesPath = os.path.join(self.ROOTDIR, "resources")
         self.fixturesPath = os.path.join(self.ROOTDIR, "fixtures")
@@ -75,6 +75,7 @@ class bidderAutomation():
         key = "crid_"+str(testData.get("creativeId"))
         print(key)
         cache = "core-dev-bidder-metadata.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        print(key,createNewJsonObject,cache)
         return key,createNewJsonObject,cache
 
 
@@ -96,6 +97,7 @@ class bidderAutomation():
         key = testData.get("domainId")
         cache = "core-dev-bidder-price-optimize.pid24g.clustercfg.usw2.cache.amazonaws.com"
         # cache = "core-dev-bidder-price.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
 
     def insertRecencyData(self):
@@ -110,6 +112,7 @@ class bidderAutomation():
             mapping[str(testData.get("creativeId")+i)] = testData.get("recency")[i]
         key = testData.get("ip")
         cache = "core-dev-recency.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
 
 
@@ -124,6 +127,7 @@ class bidderAutomation():
         mapping["household_score"] = testData.get("scores").get("household_score")
         key = testData.get("ip")
         cache = "core-dev-household-score.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
 
     def fixStringColumns(self):
@@ -133,7 +137,9 @@ class bidderAutomation():
         for regex in exp.keys():
             for line in fileinput.input(self.bidderfile, inplace=1):
                 if len(re.findall(exp.get(regex), line)) > 0:
-                    correctedString = line.strip().split(" :")[0]+':"'+line.strip().split(":")[1]+'"'
+                    key = line.strip().split(" :")[0].strip()
+                    val = line.strip().split(":")[1].strip()
+                    correctedString = key+':"'+val+'"'
                     line = line.replace(line, correctedString)
                     sys.stdout.write(" " * 6 + correctedString + '\n')
                 else:
@@ -141,3 +147,4 @@ class bidderAutomation():
 
 
 
+# print(bidderAutomation("BidderTestPositiveViewabilityPositive3").setVariablesFromJsonFile())

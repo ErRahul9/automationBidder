@@ -1,1 +1,1 @@
-BidderTestPositiveWithBidAmountBidderTestPositiveWithBidAmountDefault
+BidderTestPositivePaceMultiplier5
