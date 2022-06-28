@@ -1,0 +1,13 @@
+BidderRecencyThresholdEqualto10minsChn1 : (200, '9984', '9001') : Pass/Fail :Pass
+BidderRecencyThresholdEqualto10minsChn1Neg : (204, 0, 0) : Pass/Fail :Pass
+BidderRecencyThresholdEqualto10minsObjNot4 : (200, '9984', '9001') : Pass/Fail :Pass
+BidderRecencyThresholdEqualto10minsChnlto8 : (200, '9984', '9001') : Pass/Fail :Pass
+BidderRecencyThresholdEqualto10minsChnlto8Obj2 : (204, 0, 0) : Pass/Fail :Fail
+BidderRecencyThresholdEqualtotime : (200, '9984', '9001') : Pass/Fail :Pass
+BidderRecencyThresholdforchannel8Obj1 : (204, 0, 0) : Pass/Fail :Fail
+BidderViewHouseHoldAndRecencyThSet : (200, '9984', '9001') : Pass/Fail :Pass
+BidderViewHouseHoldAndRecencyThSetRecencyScoreLessThenTh : (200, '9984', '9001') : Pass/Fail :Fail
+BidderViewHouseHoldAndRecencyThSetHHScoreLessThenTh : (200, '9984', '9001') : Pass/Fail :Fail
+BidderViewHouseHoldAndRecencyThSetViewScoreLessThenTh : (204, 0, 0) : Pass/Fail :Pass
+BidderRecencyThresholdEqualto10minsChnlto8Obj2 : (204, 0, 0) : Pass/Fail :Fail
+BidderRecencyThresholdforchannel8Obj1 : (204, 0, 0) : Pass/Fail :Fail
