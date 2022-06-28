@@ -1,9 +1,0 @@
-BidderHouseholdThresholdsetto1 : (204, 0, 0) : Pass/Fail :Pass
-BidderHouseholdThresholdsetto0 : (200, '9990', '990') : Pass/Fail :Pass
-BidderHouseholdThresholdsetto2 : (204, 0, 0) : Pass/Fail :Pass
-BidderHouseholdScoreGreaterThenThreshold : (200, '9988', '990') : Pass/Fail :Pass
-BidderHouseholdScoreLessThenThreshold : (204, 0, 0) : Pass/Fail :Pass
-BidderHouseholdScoreEqualToThreshold : (200, '9986', '990') : Pass/Fail :Pass
-BidderHousehold&ViewabilityThSet : (204, 0, 0) : Pass/Fail :Fail
-BidderHouseholdScoreLesstheTh&ViewabilityTHnotmet : (204, 0, 0) : Pass/Fail :Pass
-BidderHousehold&ViewabilityThSet : (204, 0, 0) : Pass/Fail :Fail

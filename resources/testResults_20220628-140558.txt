@@ -1,5 +1,0 @@
-BidderTestPositiveHightAndWidthAvailable : (200, '9995', '109909') : Pass/Fail :Pass
-BidderTestNegativeHightAvailableWidthnotAvailable : (200, '9994', '990') : Pass/Fail :Fail
-BidderTestNegativeHightNotAvailableWidthAvailable : (200, '9993', '990') : Pass/Fail :Fail
-BidderTestNegativeHightWidthNotAvailable : (200, '9992', '990') : Pass/Fail :Fail
-BidderDefaultWidthAndHight : (204, 0, 0) : Pass/Fail :Pass

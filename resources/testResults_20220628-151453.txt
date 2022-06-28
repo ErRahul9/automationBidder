@@ -1,5 +1,0 @@
-BidderViewHouseHoldAndRecencyThSet : (204, 0, 0) : Pass/Fail :Fail
-BidderViewHouseHoldAndRecencyThSetRecencyScoreLessThenTh : (204, 0, 0) : Pass/Fail :Pass
-BidderViewHouseHoldAndRecencyThSetHHScoreLessThenTh : (204, 0, 0) : Pass/Fail :Pass
-BidderViewHouseHoldAndRecencyThSetViewScoreLessThenTh : (204, 0, 0) : Pass/Fail :Pass
-BidderViewHouseHoldAndRecencyThSet : (204, 0, 0) : Pass/Fail :Fail

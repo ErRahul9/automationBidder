@@ -81,12 +81,12 @@ if __name__ == "__main__":
     if len(testCase) >= 1:
         tests = [test for test in tests if test in testCase]
         print(tests)
-        teardown(tests)
-        setup(tests)
-    else:
-        teardown(tests)
-        setup(tests)
-    time.sleep(40)
+        # teardown(tests)
+        # setup(tests)
+    # else:
+        # teardown(tests)
+        # setup(tests)
+    # time.sleep(40)
     jsonFile = os.path.join(main().fixturesPath, "testData.json")
     with open(jsonFile) as jFile:
         result = json.load(jFile)
@@ -99,6 +99,7 @@ if __name__ == "__main__":
             main().runBeeswaxCommand()
             status = main().readResults()[0]
             bidPrice = main().readResults()[2]
+            print(str(status)+" "+str(bidPrice))
             if int(bidPrice) ==  int(expectedResults["price"]) and int(status) == int(expectedResults["statusCode"]):
                 passFail = "Pass"
             else:

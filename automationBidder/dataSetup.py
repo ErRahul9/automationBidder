@@ -17,7 +17,7 @@ def setup(tests):
     for words in tests:
         if len(words) > 0:
             data = bidderAutomation.bidderAutomation(words)
-            loadData = main().loadData(data)
+            main().loadData(data)
 
 def teardown(tests):
     for words in tests:

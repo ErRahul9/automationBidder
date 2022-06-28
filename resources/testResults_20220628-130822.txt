@@ -1,2 +1,0 @@
-BidderRecencyThresholdEqualto10minsChnlto8 : (200, '9984', '9001') : Pass/Fail :Pass
-BidderRecencyThresholdEqualto10minsChnlto8Obj2 : (200, '9984', '9001') : Pass/Fail :Pass
