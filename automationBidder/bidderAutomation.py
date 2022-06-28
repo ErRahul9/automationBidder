@@ -117,7 +117,7 @@ class bidderAutomation():
             times =  getChecks[i]
             # dt = int(datetime.datetime.utcnow().time().microsecond)*1000  - times * 1000*60
             # dt = int((datetime.now() - datetime(1970, 1, 1)).total_seconds()) - times*60000
-            dt = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())*1000 - times *600000
+            dt = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())*1000 - times *60000
             mapping[str(testData.get("advertiserId")+i)] = dt
         # 1656434525450
         # 1656419956000

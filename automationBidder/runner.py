@@ -1,13 +1,8 @@
-# import automationBidder
-# import datetime
 import os
 import time
 import json
-from datetime import datetime, timezone
-import timestamp as timestamp
-
 from main import main
-from automationBidder.bidderAutomation import bidderAutomation
+from bidderAutomation import *
 import dataSetup
 import sys
 
@@ -73,11 +68,8 @@ def rerun():
 
 
 if __name__ == "__main__":
-
-
     readArgs()
     testCase = readArgs()
-    # print(testCase.strip())
     passFail = ""
     getCurrentTS = time.time()
     test = main().createListOfTestCases()
@@ -86,8 +78,9 @@ if __name__ == "__main__":
     tests = [test for test in testCases.read().split('\n')]
     # print(tests)
     print(len(testCase))
-    if len(testCase) > 1:
+    if len(testCase) >= 1:
         tests = [test for test in tests if test in testCase]
+        print(tests)
         teardown(tests)
         setup(tests)
     else:
@@ -102,7 +95,7 @@ if __name__ == "__main__":
             expRes = result[words]
             expectedResults = expRes["expectedResult"]
             data = bidderAutomation(words)
-            updateFile = main().updateFile(data)
+            main().updateFile(data)
             main().runBeeswaxCommand()
             status = main().readResults()[0]
             bidPrice = main().readResults()[2]

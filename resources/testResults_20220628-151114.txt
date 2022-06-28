@@ -1,0 +1,2 @@
+BidderHouseholdandViewabilityThSet : (204, 0, 0) : Pass/Fail :Fail
+BidderHouseholdandViewabilityThSet : (204, 0, 0) : Pass/Fail :Fail
