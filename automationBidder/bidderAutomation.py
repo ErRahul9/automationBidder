@@ -1,6 +1,9 @@
+import datetime
 import json
 import sys
 import os
+import time
+from datetime import datetime
 import enumerator
 import re
 import fileinput
@@ -55,7 +58,6 @@ class bidderAutomation():
         # metaPath = os.path.join(self.resourcesPath,"metadata.json")
         with open(self.metaPath) as meta:
             jMeta = json.load(meta)
-        print(self.jsonfile)
         with open(self.jsonfile) as f:
             data = json.load(f)
             testData = data.get(self.test)
@@ -73,7 +75,6 @@ class bidderAutomation():
         for thrash in thresholds:
             mapping[thrash] = testData.get("Thresholds").get(thrash.split("_")[0])
         key = "crid_"+str(testData.get("creativeId"))
-        print(key)
         cache = "core-dev-bidder-metadata.pid24g.clustercfg.usw2.cache.amazonaws.com"
         print(key,createNewJsonObject,cache)
         return key,createNewJsonObject,cache
@@ -107,10 +108,21 @@ class bidderAutomation():
             data = json.load(f)
             testData = data.get(self.test)
         createNewJsonObject = {"mapping": {}}
+        dt = round(time.time()*1000) - 11*1000
         mapping = createNewJsonObject["mapping"]
-        for i in range(0,len(testData.get("recency"))):
-            mapping[str(testData.get("creativeId")+i)] = testData.get("recency")[i]
+        getChecks = testData.get("recency")
+        # print(int(datetime.datetime.utcnow().time().microsecond))
+        # print(time.time().)
+        for i in range(0,len(getChecks)):
+            times =  getChecks[i]
+            # dt = int(datetime.datetime.utcnow().time().microsecond)*1000  - times * 1000*60
+            # dt = int((datetime.now() - datetime(1970, 1, 1)).total_seconds()) - times*60000
+            dt = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())*1000 - times *600000
+            mapping[str(testData.get("advertiserId")+i)] = dt
+        # 1656434525450
+        # 1656419956000
         key = testData.get("ip")
+        # print(dt)
         cache = "core-dev-recency.pid24g.clustercfg.usw2.cache.amazonaws.com"
         print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
@@ -146,5 +158,12 @@ class bidderAutomation():
                     sys.stdout.write(line)
 
 
+    def getExpectedResults(self,tests):
+        with open(self.jsonfile) as f:
+            data = json.load(f)
+            testData = data.get(self.test)
+        return testData[tests]
 
-# print(bidderAutomation("BidderTestPositiveViewabilityPositive3").setVariablesFromJsonFile())
+
+
+# print(bidderAutomation("BidderRecencyThresholdEqualto10minsChn1").insertRecencyData())
