@@ -1,2 +1,0 @@
-testCase , TestResultsPass/Fail
-BidderRecencyThresholdEqualto10minsChnlto8Obj2 , (200, '5929', '9001') , Pass/Fail :Pass
