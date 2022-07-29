@@ -70,10 +70,12 @@ class main():
     def loadData(self, data):
         retArr =[]
         caches = []
-        if "bidder" in self.test:
-            caches = ["insertMetadataCache", "insertBidderObject", "insertRecencyData", "insertHouseholdScore"]
-        elif "augmentor" in self.test:
-            caches = ["insertSegmentData"]
+        for tests in self.test:
+
+            if "bidder" in tests.lower():
+                caches = ["insertMetadataCache", "insertBidderObject", "insertRecencyData", "insertHouseholdScore"]
+            elif "augmentor" in tests.lower():
+                caches = ["insertSegmentData"]
         for funcs in caches:
             method = getattr(data, funcs)
             methodCall = method()
@@ -111,12 +113,13 @@ class main():
             if "bidder" in file or "augmentor" in file:
                 shutil.copy2(os.path.join(src, file), trg)
         change = os.chdir(trg)
-        if "bidder" in file:
+        print(file)
+        if "bidder" in src.lower():
             retData = subprocess.run(['./bidding_agent_requests_generator', 'bidder_try_1.txt',
                                   'http://bidder.coredev.west2.steelhouse.com/beeswax/bidder',
                                   '--path-to-responses-file', '../../../../../resources/output.txt'])
             return retData.returncode
-        elif "augmentor" in file:
+        elif "augmentor" in src.lower():
             retData = subprocess.run(['./augmentor_requests_generator', 'augmentor_sample_request_1.txt',
                                       'http://beeswax.augmentor/aug',
                                       '--path-to-responses-file', '../../../../../resources/outputAugmentor.txt'])

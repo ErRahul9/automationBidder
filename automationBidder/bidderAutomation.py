@@ -26,10 +26,7 @@ class bidderAutomation():
             file = "augmentor_sample_request_1.txt"
         self.fixturesPath = os.path.join(self.ROOTDIR, "{}".format(fix))
         self.jsonfile = os.path.join(self.fixturesPath, "testData.json")
-
         self.bidderfile = os.path.join(self.fixturesPath, "{}".format(file))
-
-
         self.metaPath = os.path.join(self.resourcesPath,"metadata.json")
 
 
@@ -43,6 +40,7 @@ class bidderAutomation():
         with open(self.jsonfile) as jsonFile:
             data = json.load(jsonFile)
             testData = data.get(self.test)
+
         for values in enumerator.enumerator:
             if type(values.value) == list:
                 for items in values.value:

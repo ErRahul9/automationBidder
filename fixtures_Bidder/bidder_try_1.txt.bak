@@ -1,0 +1,40 @@
+bid_request {
+  id: "196.67.67.127"
+  imp {
+    id: "196.67.67.127"
+    banner {
+      w : 1922
+      h : 1082
+      pos: FOOTER
+      btype: XHTML_TEXT
+      battr: AUDIO_AUTO_PLAY
+      battr: AUDIO_USER_INITIATED
+      battr: EXPANDABLE_AUTOMATIC
+      battr: EXPANDABLE_ROLLOVER_INITIATED
+      battr: VIDEO_IN_BANNER_AUTO_PLAY
+      battr: VIDEO_IN_BANNER_USER_INITIATED
+      battr: POP_UP
+      battr: PROVOCATIVE_OR_SUGGESTIVE
+      battr: TEXT_ONLY
+      battr: USER_INTERACTIVE
+      battr: WINDOWS_DIALOG_OR_ALERT_STYLE
+      battr: HAS_AUDIO_ON_OFF_BUTTON
+      battr: AD_CAN_EXPAND_LEFT
+      battr: AD_CAN_EXPAND_RIGHT
+      battr: AD_CAN_EXPAND_UP
+      battr: AD_CAN_EXPAND_DOWN
+      battr: AD_CAN_EXPAND_FULLSCREEN
+      api: MRAID_2
+      api: MRAID
+    }
+    displaymanager: "millennial"
+    displaymanagerver: "6.1.0-5323db4"
+    instl: NO
+    bidfloor: 6.18
+    ext {
+      placement_type: BANNER
+      environment_type: APP
+      viewability {
+        predicted_viewability: 0
+      }
+    }

@@ -82,10 +82,10 @@ class runner():
         if len(self.testcases) >= 1:
             tests = [test for test in tests if test in self.testcases]
             # print(tests)
-            dataSetup.dataset.teardown(tests)
+            # dataSetup.dataset.teardown(tests)
             dataSetup.dataset.setup(tests)
         else:
-            dataSetup.dataset.teardown(tests)
+            # dataSetup.dataset.teardown(tests)
             dataSetup.dataset.setup(tests)
         # time.sleep(40)
         jsonFile = os.path.join(main(self.keyword).returnPaths().get("fixturesPath"), "testData.json")
@@ -98,6 +98,7 @@ class runner():
                 expectedResults = expRes["expectedResult"]
                 data = bidderAutomation(words)
                 main(self.keyword).updateFile(data)
+                # time.sleep(60)
                 main(self.keyword).runBeeswaxCommand()
                 status =main(self.keyword).readResults()[0]
                 bidPrice =main(self.keyword).readResults()[2]
