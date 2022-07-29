@@ -16,9 +16,20 @@ class bidderAutomation():
         self.columnsToBeFixed = ["domain","ip","bundle"]
         self.ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
         self.resourcesPath = os.path.join(self.ROOTDIR, "resources")
-        self.fixturesPath = os.path.join(self.ROOTDIR, "fixtures")
+        fix = ""
+        file = ""
+        if "bidder" in testCase.lower():
+            fix = "fixtures_Bidder"
+            file = "bidder_try_1.txt"
+        elif "augmentor" in testCase.lower():
+            fix = "fixtures_Augmentor"
+            file = "augmentor_sample_request_1.txt"
+        self.fixturesPath = os.path.join(self.ROOTDIR, "{}".format(fix))
         self.jsonfile = os.path.join(self.fixturesPath, "testData.json")
-        self.bidderfile = os.path.join(self.fixturesPath, "bidder_try_1.txt")
+
+        self.bidderfile = os.path.join(self.fixturesPath, "{}".format(file))
+
+
         self.metaPath = os.path.join(self.resourcesPath,"metadata.json")
 
 
@@ -142,6 +153,29 @@ class bidderAutomation():
         print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
 
+
+
+
+    def insertSegmentData(self):
+        # with open(self.metaPath) as meta:
+        #     jMeta = json.load(meta)
+        with open(self.jsonfile) as f:
+            data = json.load(f)
+            testData = data.get(self.test)
+        key = testData.get("steelhouseId")
+        value = testData.get("advertiserId")
+        cache = "core-dev-segment-mapping.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        createNewJsonObject = {"mapping": {}}
+        mapping = createNewJsonObject["mapping"]
+        mapping[key] = value
+        print(createNewJsonObject)
+        # print(value)
+        # key = testData.get("ip")
+        return key, createNewJsonObject,cache
+
+
+
+
     def fixStringColumns(self):
         exp = {}
         for i, items in enumerate(self.columnsToBeFixed):
@@ -166,4 +200,4 @@ class bidderAutomation():
 
 
 
-# print(bidderAutomation("BidderRecencyThresholdEqualto10minsChn1").insertRecencyData())
+# print(bidderAutomation("AugmentorTest1").insertSegmentData())
