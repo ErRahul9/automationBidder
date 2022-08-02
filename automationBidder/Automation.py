@@ -8,27 +8,35 @@ import enumerator
 import re
 import fileinput
 
-class bidderAutomation():
+class Automation():
 
 
     def __init__(self,testCase):
         self.test = testCase
-        self.columnsToBeFixed = ["domain","ip","bundle"]
+
         self.ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
         self.resourcesPath = os.path.join(self.ROOTDIR, "resources")
         fix = ""
         file = ""
+        self.type = ""
         if "bidder" in testCase.lower():
+            self.columnsToBeFixed = ["domain", "ip", "bundle"]
             fix = "fixtures_Bidder"
             file = "bidder_try_1.txt"
+            self.type = "bidder"
         elif "augmentor" in testCase.lower():
+            self.columnsToBeFixed = ["ip"]
             fix = "fixtures_Augmentor"
             file = "augmentor_sample_request_1.txt"
+            self.type = "augmentor"
         self.fixturesPath = os.path.join(self.ROOTDIR, "{}".format(fix))
         self.jsonfile = os.path.join(self.fixturesPath, "testData.json")
-        self.bidderfile = os.path.join(self.fixturesPath, "{}".format(file))
+        self.processFile = os.path.join(self.fixturesPath, "{}".format(file))
         self.metaPath = os.path.join(self.resourcesPath,"metadata.json")
-
+        if "bidder" in self.type:
+            self.enum = enumerator.bid
+        elif "augmentor" in self.type:
+            self.enum = enumerator.augment
 
 
 
@@ -41,11 +49,11 @@ class bidderAutomation():
             data = json.load(jsonFile)
             testData = data.get(self.test)
 
-        for values in enumerator.enumerator:
+        for values in self.enum:
             if type(values.value) == list:
                 for items in values.value:
                     regex = re.compile(r'\b' + str(items) + r'\b')
-                    for line in fileinput.input(self.bidderfile, inplace=1):
+                    for line in fileinput.input(self.processFile, inplace=1):
                         if len(re.findall(regex, line)) > 0:
                             line = line.replace(line,re.findall(regex, line)[0] + " : "+str(testData.get(values.name)))
                             sys.stdout.write(" " * 6 + line + '\n')
@@ -54,7 +62,7 @@ class bidderAutomation():
             else:
                 regex = re.compile(r'\b' + str(values.value) + r'\b')
 
-            for line in fileinput.input(self.bidderfile,inplace=1):
+            for line in fileinput.input(self.processFile,inplace=1):
                 if len(re.findall(regex, line)) > 0:
                     line = line.replace(line,re.findall(regex, line)[0] + " : " + str(testData.get(values.name)))
                     sys.stdout.write(" "*6+line+'\n')
@@ -64,7 +72,6 @@ class bidderAutomation():
 
 
     def insertMetadataCache(self):
-        # metaPath = os.path.join(self.resourcesPath,"metadata.json")
         with open(self.metaPath) as meta:
             jMeta = json.load(meta)
         with open(self.jsonfile) as f:
@@ -73,12 +80,11 @@ class bidderAutomation():
         createNewJsonObject  = {"mapping":{}}
         createNewJsonObject["mapping"] = jMeta.get("metadata")
         mapping = createNewJsonObject["mapping"]
-        for values in enumerator.enumerator:
+        for values in self.enum:
             if type(values.value) == list:
                 if values.value[1] in jMeta.get("metadata").keys():
                     mapping[values.value[1]] = testData.get(str(values).split(".")[1])
             elif values.value in jMeta.get("metadata").keys():
-                # print(testData.get(str(values)))
                 mapping[values.value] = testData.get(str(values).split(".")[1])
         thresholds = [keys for keys in jMeta.get("metadata").keys() if "threshold" in keys]
         for thrash in thresholds:
@@ -91,14 +97,12 @@ class bidderAutomation():
 
 
     def insertBidderObject(self):
-        # metaPath = os.path.join(self.resourcesPath, "metadata.json")
         with open(self.metaPath) as meta:
             jMeta = json.load(meta)
         with open(self.jsonfile) as f:
             data = json.load(f)
             testData = data.get(self.test)
         createNewJsonObject  = {"mapping":{}}
-        # testObject = testData.get("cpi")
         mapping = createNewJsonObject["mapping"]
         mapping[str(testData.get("width"))+":"+str(testData.get("height"))+"_avg_cpi"] = testData.get("cpi").get("avg_cpi")
         mapping[str(testData.get("width")) + ":" + str(testData.get("height")) + "_min_cpi"] = testData.get("cpi").get("min_cpi")
@@ -120,18 +124,11 @@ class bidderAutomation():
         dt = round(time.time()*1000) - 11*1000
         mapping = createNewJsonObject["mapping"]
         getChecks = testData.get("recency")
-        # print(int(datetime.datetime.utcnow().time().microsecond))
-        # print(time.time().)
         for i in range(0,len(getChecks)):
             times =  getChecks[i]
-            # dt = int(datetime.datetime.utcnow().time().microsecond)*1000  - times * 1000*60
-            # dt = int((datetime.now() - datetime(1970, 1, 1)).total_seconds()) - times*60000
             dt = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())*1000 - times *60000
             mapping[str(testData.get("advertiserId")+i)] = dt
-        # 1656434525450
-        # 1656419956000
         key = testData.get("ip")
-        # print(dt)
         cache = "core-dev-recency.pid24g.clustercfg.usw2.cache.amazonaws.com"
         print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
@@ -155,8 +152,6 @@ class bidderAutomation():
 
 
     def insertSegmentData(self):
-        # with open(self.metaPath) as meta:
-        #     jMeta = json.load(meta)
         with open(self.jsonfile) as f:
             data = json.load(f)
             testData = data.get(self.test)
@@ -166,10 +161,22 @@ class bidderAutomation():
         createNewJsonObject = {"mapping": {}}
         mapping = createNewJsonObject["mapping"]
         mapping[key] = value
-        print(createNewJsonObject)
-        # print(value)
-        # key = testData.get("ip")
         return key, createNewJsonObject,cache
+
+
+
+    def insertMembershipData(self):
+        with open(self.jsonfile) as f:
+            data = json.load(f)
+            testData = data.get(self.test)
+        # print(testData)
+        key = testData.get("ip")
+        value = testData.get("steelhouseId")
+        cache = "core-dev-membership.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        createNewJsonObject = {"mapping": {}}
+        mapping = createNewJsonObject["mapping"]
+        mapping[key] = value
+        return key, createNewJsonObject, cache
 
 
 
@@ -179,7 +186,7 @@ class bidderAutomation():
         for i, items in enumerate(self.columnsToBeFixed):
             exp["regex"+"_"+str(i)] = re.compile(r'\b' + str(items) + r'\b')
         for regex in exp.keys():
-            for line in fileinput.input(self.bidderfile, inplace=1):
+            for line in fileinput.input(self.processFile, inplace=1):
                 if len(re.findall(exp.get(regex), line)) > 0:
                     key = line.strip().split(" :")[0].strip()
                     val = line.strip().split(":")[1].strip()
@@ -197,5 +204,3 @@ class bidderAutomation():
         return testData[tests]
 
 
-
-# print(bidderAutomation("AugmentorTest1").insertSegmentData())

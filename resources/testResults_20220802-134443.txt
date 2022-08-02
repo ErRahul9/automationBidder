@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+AugmentorTest1 , (200, '"beeswax-11599"', 0) , Pass

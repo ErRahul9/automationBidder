@@ -1,6 +1,6 @@
 import os
 from main import main
-import bidderAutomation
+import Automation
 
 
 
@@ -16,36 +16,19 @@ class dataset():
 
         main(self.test).createListOfTestCases()
 
-    # fixPath = os.path.join(main().fixturesPath, "testCases.txt")
-    # testCases = open(fixPath)
-    # tests = [test for test in testCases.read().split('\n')]
-    #     resourcesPath = os.path.join(main(self.test).ROOTDIR, "resources")
-
-    # if "bidder" in tests:
-    #     fixturesPath = os.path.join(ROOTDIR, "fixtures_Bidder")
-    # elif "augment" in tests:
-    #     fixturesPath = os.path.join(ROOTDIR, "fixtures_Augmentor")
-    # def setFixturePath(tests):
-    #
-
-    # fixturesPath = os.path.join(ROOTDIR, "fixtures_Bidder")
-    #     fixPath = os.path.join(main(self.test).fixturesPath, "testCases.txt")
-        # testCases = open(fixPath)
 
     def setup(tests):
         for words in tests:
             if len(words) > 0:
-                data = bidderAutomation.bidderAutomation(words)
+                data = Automation.Automation(words)
                 print(data)
                 main(tests).loadData(data)
 
     def teardown(tests):
         for words in tests:
             if len(words) > 0:
-                data = bidderAutomation.bidderAutomation(words)
+                data = Automation.Automation(words)
                 print(data)
                 main(tests).teardown(data)
 
 
-# print(setup())
-# print(teardown())

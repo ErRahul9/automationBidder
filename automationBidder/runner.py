@@ -2,7 +2,7 @@ import os
 import time
 import json
 from main import main
-from bidderAutomation import *
+from Automation import *
 import dataSetup
 import sys
 import config
@@ -22,7 +22,6 @@ class runner():
         for tests in self.testNames:
             if self.keyword in tests:
                 self.testcases.append(tests.strip())
-        # print(self.testcases)
 
 
     def setup(self):
@@ -70,87 +69,56 @@ class runner():
 
 
     def run(self):
-        # testCase = self.readArgs()
         passFail = ""
         getCurrentTS = time.time()
         main(self.keyword).createListOfTestCases()
+        main(self.keyword).testResults.write("AutomationTestCaseId" + " , " + "TestResults  , " + " Pass/Fail" + '\n')
         fixPath = os.path.join(main(self.keyword).returnPaths().get("fixturesPath"), "testCases.txt")
         testCases = open(fixPath)
         tests = [test for test in testCases.read().split('\n')]
-        # print(tests)
-        # print(len(self.testcases))
         if len(self.testcases) >= 1:
             tests = [test for test in tests if test in self.testcases]
-            # print(tests)
-            # dataSetup.dataset.teardown(tests)
+            dataSetup.dataset.teardown(tests)
             dataSetup.dataset.setup(tests)
         else:
-            # dataSetup.dataset.teardown(tests)
+            dataSetup.dataset.teardown(tests)
             dataSetup.dataset.setup(tests)
         # time.sleep(40)
         jsonFile = os.path.join(main(self.keyword).returnPaths().get("fixturesPath"), "testData.json")
-        main(self.keyword).testResults.write("AutomationTestCaseId" + " , " + "TestResults  , " + " Pass/Fail" +'\n')
+
         with open(jsonFile) as jFile:
             result = json.load(jFile)
         for words in tests:
             if len(words) > 0:
                 expRes = result[words]
                 expectedResults = expRes["expectedResult"]
-                data = bidderAutomation(words)
+                data = Automation(words)
                 main(self.keyword).updateFile(data)
                 # time.sleep(60)
-                main(self.keyword).runBeeswaxCommand()
-                status =main(self.keyword).readResults()[0]
-                bidPrice =main(self.keyword).readResults()[2]
-                print(str(status) + " " + str(bidPrice))
-                if int(bidPrice) == int(expectedResults["price"]) and int(status) == int(expectedResults["statusCode"]):
-                    passFail = "Pass"
-                else:
-                    passFail = "Fail"
-                main(self.keyword).testResults.write(
-                    words + " , " + str(main(self.keyword).readResults()) + " , " + passFail + '\n')
+                main(self.keyword).runCommand()
+                if "bidder" in self.keyword.lower():
+                    status =main(self.keyword).readResults()[0]
+                    bidPrice =main(self.keyword).readResults()[2]
+                    print(str(status) + " " + str(bidPrice))
+                    if int(bidPrice) == int(expectedResults["price"]) and int(status) == int(expectedResults["statusCode"]):
+                        passFail = "Pass"
+                    else:
+                        passFail = "Fail"
+                    main(self.keyword).testResults.write(
+                        words + " , " + str(main(self.keyword).readResults()) + " , " + passFail + '\n')
+                elif "augmentor" in self.keyword.lower():
+                    status = main(self.keyword).readResults()[0]
+                    ip = main(self.keyword).readResults()[1]
+                    if int(status) == int(expectedResults["statusCode"]):
+                        passFail = "Pass"
+                    else:
+                        passFail = "Fail"
+                    main(self.keyword).testResults.write(words + " , " + str(main(self.keyword).readResults()) + " , " + passFail + '\n')
+                    print(status)
+                    print("running augmentor")
 
 
 if __name__ == "__main__":
     runner().run()
-    # readArgs()
-    # testCase = readArgs()
-    # passFail = ""
-    # getCurrentTS = time.time()
-    # test = main(keyword).createListOfTestCases()
-    # fixPath = os.path.join(main(keyword).fixturesPath, "testCases.txt")
-    # testCases = open(fixPath)
-    # tests = [test for test in testCases.read().split('\n')]
-    # # print(tests)
-    # print(len(testCase))
-    # if len(testCase) >= 1:
-    #     tests = [test for test in tests if test in testCase]
-    #     print(tests)
-    #     teardown(tests)
-    #     setup(tests)
-    # else:
-    #     teardown(tests)
-    #     setup(tests)
-    # # time.sleep(40)
-    # jsonFile = os.path.join(main(keyword).fixturesPath, "testData.json")
-    # main(keyword).testResults.write("AutomationTestCaseId" + " , " + "TestResults          " + "             Pass/Fail" + '\n')
-    # with open(jsonFile) as jFile:
-    #     result = json.load(jFile)
-    # for words in tests:
-    #     if len(words) > 0 :
-    #         expRes = result[words]
-    #         expectedResults = expRes["expectedResult"]
-    #         data = bidderAutomation(words)
-    #         main(keyword).updateFile(data)
-    #         main(keyword).runBeeswaxCommand()
-    #         status = main(keyword).readResults()[0]
-    #         bidPrice = main(keyword).readResults()[2]
-    #         print(str(status)+" "+str(bidPrice))
-    #         if int(bidPrice) ==  int(expectedResults["price"]) and int(status) == int(expectedResults["statusCode"]):
-    #             passFail = "Pass"
-    #         else:
-    #             passFail = "Fail"
-    #
-    #         main(keyword).testResults.write(words + " , " + str(main(keyword).readResults()) + " , "+passFail+ '\n')
     runner().rerun()
 

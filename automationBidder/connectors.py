@@ -6,12 +6,21 @@ def connectToCache(host, port, mapping, key,action):
     ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), "..","resources"))
     startup_nodes = [{"host": host, "port": port}]
     rc = RedisCluster(startup_nodes=startup_nodes, decode_responses=True, skip_full_coverage_check=True)
+    getValue = ""
     if "insert" in action:
-        rc.hmset(name=key,mapping=mapping)
+        if "segment" in host:
+            for keys in mapping:
+                rc.set(key, mapping.get(keys))
+                getValue = rc.get(key)
+        elif "member" in host:
+            for keys in mapping:
+                rc.sadd(keys,mapping.get(keys))
+                getValue = rc.smembers(keys)
+        else:
+            rc.hmset(name=key,mapping=mapping)
+            getValue = rc.hgetall(key)
     elif "delete" in action:
         rc.flushall()
-        # rc.delete(key)
-    getValue = rc.hgetall(key)
     return getValue
 
 

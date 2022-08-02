@@ -1,7 +1,6 @@
 import enum
 
-
-class enumerator(enum.Enum):
+class bid(enum.Enum):
     domainId = ["domain","bundle"]
     campaignid = "campaign_id"
     creativeId = ["creative_ids","creative_id"]
@@ -14,3 +13,5 @@ class enumerator(enum.Enum):
     ip = ["ip_address","ip"]
     paceMultipler = "pace_multiplier"
 
+class augment(enum.Enum):
+    ip = "ip"
