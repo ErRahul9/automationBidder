@@ -47,7 +47,8 @@ class main():
             testPath = os.path.join(self.returnPaths().get("fixturesPath"),"testCases.txt")
             with open(testPath,"w+") as f:
                 for keys in data.keys():
-                    f.write(keys+'\n')
+                    if self.test in keys:
+                        f.write(keys+'\n')
             f.close()
         jFile.close()
 
@@ -63,13 +64,18 @@ class main():
             elif "augmentor" in tests.lower():
                 caches = ["insertSegmentData","insertMembershipData"]
         for funcs in caches:
-            method = getattr(data, funcs)
-            methodCall = method()
-            key = methodCall[0]
-            metadata = methodCall[1]
-            cache = methodCall[2]
-            retVal = connectToCache(cache, 6379, metadata.get("mapping"), key, "insert")
-            retArr.append(retVal)
+            if "Segment" in funcs or "Membership" in funcs:
+                method = getattr(data, funcs)
+                methodCall = method()
+                retArr.append(methodCall)
+            else:
+                method = getattr(data, funcs)
+                methodCall = method()
+                key = methodCall[0]
+                metadata = methodCall[1]
+                cache = methodCall[2]
+                retVal = connectToCache(cache, 6379, metadata.get("mapping"), key, "insert")
+                retArr.append(retVal)
         return retArr
 
 
@@ -120,11 +126,11 @@ class main():
         for funcs in caches:
             method = getattr(data, funcs)
             methodCall = method()
-            key = methodCall[0]
-            metadata = methodCall[1]
+            key = "methodCall[0]"
+            metadata = "methodCall[1]"
             cache = methodCall[2]
-            retVal = connectToCache(cache, 6379, metadata.get("mapping"), key, "delete")
-            retData.append("deleted :  " + key + "   :" + str(retVal))
+            retVal = connectToCache(cache, 6379, metadata, key, "delete")
+            retData.append("deleted :  " + key[0] + "   :" + str(retVal))
         return retData
 
     def readResults(self):

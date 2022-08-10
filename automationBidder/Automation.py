@@ -7,6 +7,7 @@ from datetime import datetime
 import enumerator
 import re
 import fileinput
+from connectors import connectToCache
 
 class Automation():
 
@@ -133,7 +134,6 @@ class Automation():
         print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
 
-
     def insertHouseholdScore(self):
         with open(self.metaPath) as meta:
             jMeta = json.load(meta)
@@ -158,9 +158,11 @@ class Automation():
         key = testData.get("steelhouseId")
         value = testData.get("advertiserId")
         cache = "core-dev-segment-mapping.pid24g.clustercfg.usw2.cache.amazonaws.com"
-        createNewJsonObject = {"mapping": {}}
-        mapping = createNewJsonObject["mapping"]
-        mapping[key] = value
+        for items in key:
+            createNewJsonObject = {"mapping": {}}
+            mapping = createNewJsonObject["mapping"]
+            mapping[items] = value
+            connectToCache(cache, 6379, mapping, items, "insert")
         return key, createNewJsonObject,cache
 
 
@@ -169,15 +171,16 @@ class Automation():
         with open(self.jsonfile) as f:
             data = json.load(f)
             testData = data.get(self.test)
-        # print(testData)
         key = testData.get("ip")
         value = testData.get("steelhouseId")
         cache = "core-dev-membership.pid24g.clustercfg.usw2.cache.amazonaws.com"
-        createNewJsonObject = {"mapping": {}}
-        mapping = createNewJsonObject["mapping"]
-        mapping[key] = value
+        # cache = "core-dev-membership-opm.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        for items in value:
+            createNewJsonObject = {"mapping": {}}
+            mapping = createNewJsonObject["mapping"]
+            mapping[key] = items
+            connectToCache(cache,6379,mapping,items,"insert")
         return key, createNewJsonObject, cache
-
 
 
 
@@ -204,3 +207,4 @@ class Automation():
         return testData[tests]
 
 
+Automation("AugmentorTestmultipleSegments").insertSegmentData()

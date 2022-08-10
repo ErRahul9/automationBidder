@@ -50,7 +50,7 @@ class runner():
             expStat = int(data.get(words).get("expectedResult").get("statusCode"))
             if  expStat == 200 and len(words) > 0:
                 print("re running "+words+" test again")
-                dataTest = bidderAutomation(words)
+                dataTest = Automation(words)
                 main(self.keyword).updateFile(dataTest)
                 main(self.keyword).runBeeswaxCommand()
                 status =main(self.keyword).readResults()[0]
@@ -66,9 +66,10 @@ class runner():
         ROOTDIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
         resourcesPath = os.path.join(ROOTDIR, "resources")
         os.rename(f"{resourcesPath}/testResults.txt","{0}/testResults_{1}.txt".format(resourcesPath,timestamp))
-
+        open(self.fixPath, 'w').close()
 
     def run(self):
+        # time.sleep(20)
         passFail = ""
         getCurrentTS = time.time()
         main(self.keyword).createListOfTestCases()
@@ -116,9 +117,10 @@ class runner():
                     main(self.keyword).testResults.write(words + " , " + str(main(self.keyword).readResults()) + " , " + passFail + '\n')
                     print(status)
                     print("running augmentor")
-
+                    open(self.fixPath, 'w').close()
 
 if __name__ == "__main__":
     runner().run()
     runner().rerun()
+
 
