@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderPublisherPriceThEqToPrice , (200, 5942, 10000) , Pass

@@ -207,4 +207,4 @@ class Automation():
         return testData[tests]
 
 
-Automation("AugmentorTestmultipleSegments").insertSegmentData()
+# Automation("AugmentorTestmultipleSegments").insertSegmentData()

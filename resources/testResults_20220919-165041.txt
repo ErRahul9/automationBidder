@@ -1,0 +1,7 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderPublisherPriceThGrThPrice , (200, 5941, 9001) , Pass
+BidderPublisherPriceThEqToPrice , (200, 5942, 10000) , Pass
+BidderPublisherPriceThLessThPrice , (204, 0, 0) , Pass
+BidderPublisherPriceThEqualTo0 , (200, 5943, 10000) , Pass
+BidderPublisherPriceThEqualTo0AndCPMEqto0 , (204, 0, 0) , Pass
+BidderPublisherPriceThNt0AndCPMEqto0 , (204, 0, 0) , Pass

@@ -52,7 +52,8 @@ class runner():
                 print("re running "+words+" test again")
                 dataTest = Automation(words)
                 main(self.keyword).updateFile(dataTest)
-                main(self.keyword).runBeeswaxCommand()
+                # main(self.keyword).runBeeswaxCommand()
+                main(self.keyword).runCommand()
                 status =main(self.keyword).readResults()[0]
                 bidPrice =main(self.keyword).readResults()[2]
                 if int(status) == int(data.get(words).get("expectedResult").get("statusCode")) and int(bidPrice) == int(data.get(words).get("expectedResult").get("price")):

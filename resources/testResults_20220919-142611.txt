@@ -1,0 +1,3 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderPublisherPriceThEqualTo0 , (200, 5943, 10000) , Pass
+BidderPublisherPriceThEqualTo0AndCPMEqto0 , (204, 0, 0) , Pass

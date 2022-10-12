@@ -104,6 +104,7 @@ class main():
             retData = subprocess.run(['./bidding_agent_requests_generator', 'bidder_try_1.txt',
                                   'http://bidder.coredev.west2.steelhouse.com/beeswax/bidder',
                                   '--path-to-responses-file', '../../../../../resources/output.txt'])
+            print(retData)
             return retData.returncode
         elif "augmentor" in src.lower():
             retData = subprocess.run(['./augmentor_requests_generator', 'augmentor_sample_request_1.txt',

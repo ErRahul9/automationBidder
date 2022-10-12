@@ -1,0 +1,3 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderDefaultWidthAndHight , (204, 0, 0) , Pass
+BidderDefault , (204, 0, 0) , Fail
