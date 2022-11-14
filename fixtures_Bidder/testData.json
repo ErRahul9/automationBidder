@@ -974,5 +974,41 @@
     "scores": {"household_score": 0},
     "cpi" : {"avg_cpi": 9001,"min_cpi": 980,"max_cpi": 999,"viewability_rate": 0},
     "expectedResult": {"price": 0,"statusCode": 204}
+  },
+   "BidderRecencyThresholdEqualto10minsChn1Obj5RecNotSet": {
+    "ip": "196.99.98.943",
+    "domainId": "kom.googlemt.online",
+    "campaignid": 99544,
+    "creativeId": 9944,
+    "advertiserId": 99938,
+    "width": 975,
+    "height": 876,
+    "recency": [-12,-13,-11],
+    "lineItemId": 5925,
+    "objectiveId": 5,
+    "channelId": 1,
+    "paceMultipler": 1,
+    "Thresholds": {"publisher": 0,"household": 0,"recency": 0,"viewability": 0},
+    "scores": {"household_score": 0},
+    "cpi" : {"avg_cpi": 9001,"min_cpi": 980,"max_cpi": 999,"viewability_rate": 0},
+    "expectedResult": {"price": 9001,"statusCode": 200}
+  },
+    "BidderRecencyThresholdEqualto10minsChn8Obj6RecNotSet": {
+    "ip": "196.99.98.942",
+    "domainId": "kom.googlemq.online",
+    "campaignid": 99543,
+    "creativeId": 9943,
+    "advertiserId": 99937,
+    "width": 975,
+    "height": 876,
+    "recency": [-12,-13,-11],
+    "lineItemId": 5925,
+    "objectiveId": 6,
+    "channelId": 8,
+    "paceMultipler": 1,
+    "Thresholds": {"publisher": 0,"household": 0,"recency": 0,"viewability": 0},
+    "scores": {"household_score": 0},
+    "cpi" : {"avg_cpi": 9001,"min_cpi": 980,"max_cpi": 999,"viewability_rate": 0},
+    "expectedResult": {"price": 9001,"statusCode": 200}
   }
 }

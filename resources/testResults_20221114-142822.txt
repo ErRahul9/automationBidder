@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderRecencyThresholdEqualto10minsChn8Obj6RecNotSet , (204, 0, 0) , Fail
