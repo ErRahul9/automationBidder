@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderRecencyThresholdEqualto10minsChn1Obj4Fail , (0, 0, 0) , Fail

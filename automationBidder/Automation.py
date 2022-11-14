@@ -129,7 +129,10 @@ class Automation():
             times =  getChecks[i]
             dt = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())*1000 - times *60000
             mapping[str(testData.get("advertiserId")+i)] = dt
-        key = testData.get("ip")
+        if testData.get("objectiveId") == 5:
+            key = testData.get("ip")+"_vast"
+        else:
+            key = testData.get("ip")
         cache = "core-dev-recency.pid24g.clustercfg.usw2.cache.amazonaws.com"
         print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache

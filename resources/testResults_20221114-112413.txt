@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderRecencyThresholdforchannel1Obj5 , (204, 0, 0) , Fail
