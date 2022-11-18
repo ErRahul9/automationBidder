@@ -12,6 +12,7 @@ class bid(enum.Enum):
     channelId = "channel_id"
     ip = ["ip_address","ip"]
     paceMultipler = "pace_multiplier"
+    recency_type="recency_type"
 
 class augment(enum.Enum):
     ip = "ip"

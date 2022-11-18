@@ -1,0 +1,11 @@
+<Status> [200] OK
+<Response headers>
+{'Content-Type': 'application/x-protobuf', 'Content-Length': '9', 'X-Protobuf-Message': 'bid.BidAgentResponse', 'X-Protobuf-Schema': 'beeswax/bid/request.proto'}
+
+<Bid Agent Response>
+bids {
+  line_item_id: 2599
+  bid_price_micros: 22657
+}
+
+===

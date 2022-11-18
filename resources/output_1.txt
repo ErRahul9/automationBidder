@@ -1,6 +1,6 @@
 <Status> [200] OK
 <Response headers>
-{'Date': 'Mon, 19 Sep 2022 20:34:45 GMT', 'Content-Type': 'application/x-protobuf', 'X-Protobuf-Schema': 'beeswax/bid/request.proto', 'X-Protobuf-Message': 'bid.BidAgentResponse', 'Transfer-Encoding': 'chunked'}
+{'Date': 'Mon, 19 Sep 2022 20:35:47 GMT', 'Content-Type': 'application/x-protobuf', 'X-Protobuf-Schema': 'beeswax/bid/request.proto', 'X-Protobuf-Message': 'bid.BidAgentResponse', 'Transfer-Encoding': 'chunked'}
 
 <Bid Agent Response>
 bids {

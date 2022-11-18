@@ -1,0 +1,157 @@
+bid_request {
+  id: "3505441503853761658"
+  imp {
+    id: "3274411719020019836"
+    video {
+      mimes: "video/mp4"
+      mimes: "video/3gpp"
+      maxduration: 18000
+      w: 300
+      h: 250
+      startdelay: 0
+      battr: PROVOCATIVE_OR_SUGGESTIVE
+      battr: AUDIO_AUTO_PLAY
+      battr: EXPANDABLE_ROLLOVER_INITIATED
+      battr: EXPANDABLE_AUTOMATIC
+      battr: POP_UP
+      battr: PROVOCATIVE_OR_SUGGESTIVE
+      battr: AUDIO_AUTO_PLAY
+      battr: EXPANDABLE_ROLLOVER_INITIATED
+      battr: EXPANDABLE_AUTOMATIC
+      battr: POP_UP
+      battr: VIDEO_IN_BANNER_AUTO_PLAY
+      ext {
+        player_size: "S"
+      }
+    }
+    instl: NO
+    tagid: "1176159"
+    secure: 0
+    ext {
+      placement_type: VIDEO
+      environment_type: APP
+      viewability {
+        predicted_viewability: 0
+      }
+    }
+  }
+  app {
+    id: "316107"
+    cat: "IAB9_26"
+    cat: "IAB9_1"
+    bundle: "com.firsttouchgames.dls3"
+    publisher {
+      id: "172867"
+    }
+  }
+  device {
+    dnt: NO
+    ua: "Mozilla/5.0 (Linux; Android 6.0.1; SM-T350 Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.124 Safari/537.36"
+    ip: "172.58.179.99"
+    geo {
+      lat: 43.797009
+      lon: -91.17485
+      country: "USA"
+      region: "WI"
+      metro: "702"
+      zip: "54601"
+      utcoffset: -300
+      ext {
+      }
+    }
+    dpidsha1: "f86a0bb3273a963b46a74d4a833dcc2669a87a39"
+    dpidmd5: "993b6da17f866abdf9bd178baf57649a"
+    make: "Samsung"
+    model: "-1"
+    os: "Android"
+    osv: "6.0"
+    connectiontype: CONNECTION_UNKNOWN
+    devicetype: MOBILE
+    ifa: "283adf1e-96a9-49da-a5ae-b5aa211c1159"
+    ext {
+      device_screen_size: "NA"
+      browser: "Chrome"
+      browser_version: "53"
+    }
+  }
+  user {
+    id: "192843255622674312"
+    gender: "O"
+    geo {
+      country: "USA"
+      region: "USA/WI"
+      metro: "702"
+      city: "5258957"
+      zip: "54601"
+    }
+    data {
+      id: "0"
+      segment {
+        id: "1"
+        value: "0"
+      }
+    }
+    ext {
+      user_id: "mid.283ADF1E-96A9-49DA-A5AE-B5AA211C1159"
+      user_id_type: AD_ID
+    }
+  }
+  at: 2
+  tmax: 120
+  wseat: "3566"
+  cur: "USD"
+  bcat: "IAB7_21"
+  bcat: "IAB7_7"
+  bcat: "IAB7_5"
+  bcat: "IAB4_7"
+  bcat: "IAB7_18"
+  bcat: "IAB23_10"
+  bcat: "IAB23_9"
+  bcat: "IAB23"
+  bcat: "IAB23_8"
+  bcat: "IAB17_20"
+  bcat: "IAB17_21"
+  bcat: "IAB17_34"
+  bcat: "IAB17_11"
+  bcat: "IAB17_9"
+  bcat: "IAB9_9"
+  bcat: "IAB7_41"
+  badv: "freeproducttesters.com"
+  badv: "sexdategezocht.nl"
+  badv: "my2013rewards.com"
+  badv: "perfectomobile.com"
+  badv: "electronics-sweepstakes.com"
+  badv: "economicfigures.com"
+  badv: "indonesia-mmm.net"
+  badv: "china-mmm.net"
+  badv: "rsa-mmm.org"
+  badv: "giftrewardclub.com"
+  badv: "korea-mmm.net"
+  badv: "korea-mmm.net"
+  badv: "wish.com"
+  test: false
+  ext {
+    inventory_source: APPNEXUS
+    auction_id {
+      hostid: 872157740
+      tid: 4672
+      timestamp: 1475209805650550
+    }
+    targeting_geo {
+      country: "USA"
+      region: "USA/WI"
+      city: "5258957"
+      zip: "54601"
+      metro: "702"
+      lat_long_present: true
+      lat: 43.797009
+      lon: -91.17485
+    }
+    time_of_week: 7230
+    buzz_key: "stinger"
+    appnexus {
+      seller_member_id: 1752
+    }
+    auctionid_str: "1475209805650550.872157740.4672.stinger"
+  }
+}

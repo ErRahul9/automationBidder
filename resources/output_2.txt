@@ -1,11 +1,11 @@
 <Status> [200] OK
 <Response headers>
-{'Date': 'Mon, 19 Sep 2022 20:36:00 GMT', 'Content-Type': 'application/x-protobuf', 'X-Protobuf-Schema': 'beeswax/bid/request.proto', 'X-Protobuf-Message': 'bid.BidAgentResponse', 'Transfer-Encoding': 'chunked'}
+{'Date': 'Mon, 19 Sep 2022 20:44:33 GMT', 'Content-Type': 'application/x-protobuf', 'X-Protobuf-Schema': 'beeswax/bid/request.proto', 'X-Protobuf-Message': 'bid.BidAgentResponse', 'Transfer-Encoding': 'chunked'}
 
 <Bid Agent Response>
 bids {
   line_item_id: 5942
-  bid_price_micros: 10000
+  bid_price_micros: 9923
 }
 
 b'==='

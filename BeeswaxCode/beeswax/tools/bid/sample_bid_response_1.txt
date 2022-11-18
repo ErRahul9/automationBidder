@@ -1,0 +1,10 @@
+bids {
+  line_item_id: 100
+  bid_price_micros_usd: 2120
+  creative_id: 1
+}
+bids {
+  line_item_id: 200
+  bid_price_micros_usd: 2100
+  creative_id: 4
+}

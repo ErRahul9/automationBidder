@@ -1,0 +1,200 @@
+bid_request {
+  id: "565542320920730572"
+  imp {
+    id: "1"
+    banner {
+      w: 320
+      h: 50
+      id: "1"
+      pos: ABOVE_THE_FOLD
+      btype: XHTML_TEXT
+      btype: IFRAME
+      battr: EXPANDABLE_AUTOMATIC
+      battr: POP_UP
+      battr: PROVOCATIVE_OR_SUGGESTIVE
+      battr: VIDEO_IN_BANNER_AUTO_PLAY
+      battr: VIDEO_IN_BANNER_USER_INITIATED
+      battr: ANNOYING
+      battr: AD_CAN_EXPAND_LEFT
+      battr: AD_CAN_EXPAND_RIGHT
+      battr: AD_CAN_EXPAND_UP
+      battr: AD_CAN_EXPAND_DOWN
+      battr: AD_CAN_EXPAND_FULLSCREEN
+      topframe: YES
+      api: ORMMA
+      api: MRAID
+      api: MRAID_2
+      wmin: 300
+      hmin: 50
+      ext {
+      }
+    }
+    instl: NO
+    bidfloor: 1.7948717948717949
+    bidfloorcur: "USD"
+    secure: 0
+    ext {
+      placement_type: BANNER
+      environment_type: APP
+      viewability {
+        predicted_viewability: 0
+      }
+    }
+  }
+  app {
+    id: "602789"
+    name: "iFunny :)"
+    cat: "IAB1"
+    cat: "IAB9"
+    bundle: "thescholarshipsystem.com"
+    publisher {
+      id: "4119"
+      name: "Flysoft"
+      ext {
+      }
+    }
+    storeurl: "http://itunes.apple.com/us/app/ifunny/id429610587?mt=8"
+    ext {
+    }
+  }
+  device {
+    dnt: NO
+    ua: "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Mobile/14A456"
+    ip: "216.4.56.166"
+    geo {
+      lat: 37.751
+      lon: -97.822
+      country: "USA"
+      type: IP
+      ext {
+      }
+    }
+    dpidsha1: "B949D721CF2020CB7BDE3C69290350919941A6C5"
+    dpidmd5: "5F5863F80354E60DE16DC98F867947F2"
+    carrier: "150"
+    language: "en"
+    make: "Apple"
+    model: "iPhone"
+    os: "iOS"
+    osv: "10"
+    js: YES
+    connectiontype: CELL_4G
+    devicetype: PHONE
+    w: 320
+    h: 568
+    ifa: "D89C3F28-C6DE-4817-87A0-EE6E67FCAD32"
+    ext {
+      augmented_device_screen_size: "M"
+      augmented_browser: "Safari"
+      augmented_browser_version: "10"
+    }
+  }
+  user {
+    gender: ""
+    geo {
+      country: "USA"
+    }
+    data {
+      id: "stinger"
+      segment {
+        id: "stinger-5566"
+        value: ""
+      }
+      ext {
+        beeswax_augmented: true
+      }
+    }
+    ext {
+      user_id: "mid.D89C3F28-C6DE-4817-87A0-EE6E67FCAD32"
+      user_id_type: IDFA
+    }
+  }
+  at: 2
+  tmax: 250
+  bcat: "IAB25"
+  bcat: "IAB26"
+  badv: "www.weeeireland.ie"
+  badv: "newholland.com"
+  badv: "http://www.tescomobile.ie/"
+  badv: "http://www.audi.ie/"
+  badv: "budweiser.co.uk"
+  badv: "Heineken.com"
+  badv: "g.doubleclick.net"
+  badv: "visitseattle.org"
+  badv: "snickers.com"
+  badv: "ugg.com"
+  badv: "drpepper.com"
+  badv: "aarons.com"
+  badv: "cadillac.com"
+  badv: "delta.com"
+  badv: "rossstores.com"
+  badv: "nissanusa.com"
+  badv: "verizonwireless.com"
+  regs {
+    coppa: NO
+  }
+  ext {
+    inventory_source: INNERACTIVE
+    auction_id {
+      hostid: 4035294731
+      tid: 4756
+      timestamp: 1475209741393069
+    }
+    targeting_geo {
+      country: "USA"
+      lat_long_present: true
+      lat: 37.751
+      lon: -97.822
+      type: IP
+    }
+    time_of_week: 7229
+    buzz_key: "stinger"
+    augmentor_data {
+      id: "BW_Managed_List"
+      segment {
+        id: "app_bundle_list"
+        value: "26"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "36"
+      }
+    }
+    auctionid_str: "1475209741393069.4035294731.4756.stinger"
+  }
+}
+adcandidates {
+  line_item_id: 2267
+  creative_ids: 331
+  creative_ids: 332
+  bidding {
+    custom_strategy {
+      name: "FLAT_PRICE_STRATEGY"
+      custom_params{
+        key: "flat_price_micros_usd"
+        value: "5010"
+      }
+    }
+  }
+  pacing {
+    pace_delivery: true
+  }
+  campaign_id: 18
+  account_id: 2
+  buzz_key: "stinger"
+  advertiser_id: 13
+  line_item_frequency_caps_info {
+    frequency_cap {
+      max_impressions: 3
+      duration_seconds: 86400
+      current_impression_count: 0
+    }
+  }
+  campaign_frequency_caps_info {
+    frequency_cap {
+      max_impressions: 10
+      duration_seconds: 2592000
+      current_impression_count: 0
+    }
+  }
+}

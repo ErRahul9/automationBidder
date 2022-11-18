@@ -1,0 +1,77 @@
+<Status> [200] OK
+<Response headers>
+{'connection': 'keep-alive', 'content-type': 'application/x-protobuf', 'content-length': '49'}
+
+<Bid Agent Response>
+bids {
+  line_item_id: 278
+  agent_data {
+    agent_id: "beeswax-hexbid"
+    agent_params {
+      key: "version"
+      string_value: "1.0.0"
+    }
+  }
+  creative {
+    id: 331
+  }
+  bid_price_micros: 5010
+}
+
+===
+<Status> [200] OK
+<Response headers>
+{'connection': 'keep-alive', 'content-type': 'application/x-protobuf', 'content-length': '98'}
+
+<Bid Agent Response>
+bids {
+  line_item_id: 520
+  agent_data {
+    agent_id: "beeswax-hexbid"
+    agent_params {
+      key: "version"
+      string_value: "1.0.0"
+    }
+  }
+  creative {
+    id: 1080
+  }
+  bid_price_micros: 1850
+}
+bids {
+  line_item_id: 523
+  agent_data {
+    agent_id: "beeswax-hexbid"
+    agent_params {
+      key: "version"
+      string_value: "1.0.0"
+    }
+  }
+  creative {
+    id: 1075
+  }
+  bid_price_micros: 1850
+}
+
+===
+<Status> [200] OK
+<Response headers>
+{'connection': 'keep-alive', 'content-type': 'application/x-protobuf', 'content-length': '49'}
+
+<Bid Agent Response>
+bids {
+  line_item_id: 612
+  agent_data {
+    agent_id: "beeswax-hexbid"
+    agent_params {
+      key: "version"
+      string_value: "1.0.0"
+    }
+  }
+  creative {
+    id: 1182
+  }
+  bid_price_micros: 2510
+}
+
+===

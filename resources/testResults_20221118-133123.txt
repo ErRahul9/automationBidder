@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderRecencyThresholdEqualto10minsRecencyTypeVast , (0, 0, 0) , Fail

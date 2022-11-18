@@ -1,2 +1,0 @@
-AutomationTestCaseId , TestResults  ,  Pass/Fail
-BidderPublisherPriceThNt0AndDemo , (0, 0, 0) , Fail
