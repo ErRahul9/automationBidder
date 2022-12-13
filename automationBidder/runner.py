@@ -92,6 +92,7 @@ class runner():
             result = json.load(jFile)
         for words in tests:
             if len(words) > 0:
+                print(words)
                 expRes = result[words]
                 expectedResults = expRes["expectedResult"]
                 data = Automation(words)

@@ -97,10 +97,12 @@ class main():
         files = os.listdir(src)
         for file in files:
             if "bidder" in file or "augmentor" in file:
+                # file = file+"_"+str(self.test)+"_"+str(datetime.now())
                 shutil.copy2(os.path.join(src, file), trg)
         change = os.chdir(trg)
         print(file)
         if "bidder" in src.lower():
+            shutil.copy2('bidder_try_1.txt','../../../../../fixtures/bidder_{}.txt'.format(str(self.test)))
             retData = subprocess.run(['./bidding_agent_requests_generator', 'bidder_try_1.txt',
                                   'http://bidder.coredev.west2.steelhouse.com/beeswax/bidder',
                                   '--path-to-responses-file', '../../../../../resources/output.txt'])

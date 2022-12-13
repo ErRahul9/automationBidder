@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderPerformanceThresholdLessThenScore , (200, 5925, 90) , Pass

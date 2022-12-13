@@ -1,0 +1,6 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderPerformanceThresholdGrtrThnScore , (204, 0, 0) , Pass
+BidderPerformanceThresholdEqlToScore , (200, 5925, 9001) , Pass
+BidderPerformanceThresholdLessThenScore , (200, 5925, 99) , Fail
+BidderPerformanceThreshold0Scorenot0 , (200, 5925, 99) , Pass
+BidderPerformanceThresholdNot0Score0 , (200, 5925, 99) , Pass

@@ -1,0 +1,2 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderPerformanceThresholdEqlToScore , (204, 0, 0) , Pass

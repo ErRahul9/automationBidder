@@ -89,7 +89,10 @@ class Automation():
                 mapping[values.value] = testData.get(str(values).split(".")[1])
         thresholds = [keys for keys in jMeta.get("metadata").keys() if "threshold" in keys]
         for thrash in thresholds:
-            mapping[thrash] = testData.get("Thresholds").get(thrash.split("_")[0])
+            if "performance" in thrash:
+                mapping[thrash] = testData.get("Thresholds").get(thrash.split("_")[1])
+            else:
+                mapping[thrash] = testData.get("Thresholds").get(thrash.split("_")[0])
         key = "crid_"+str(testData.get("creativeId"))
         cache = "core-dev-bidder-metadata.pid24g.clustercfg.usw2.cache.amazonaws.com"
         print(key,createNewJsonObject,cache)
@@ -108,7 +111,9 @@ class Automation():
         mapping[str(testData.get("width"))+":"+str(testData.get("height"))+"_avg_cpi"] = testData.get("cpi").get("avg_cpi")
         mapping[str(testData.get("width")) + ":" + str(testData.get("height")) + "_min_cpi"] = testData.get("cpi").get("min_cpi")
         mapping[str(testData.get("width")) + ":" + str(testData.get("height")) + "_max_cpi"] = testData.get("cpi").get("max_cpi")
-        mapping["viewability_rate"] = testData.get("cpi").get("viewability_rate")
+        mapping[str(testData.get("width")) + ":" + str(testData.get("height")) + "_viewability_rate"] = testData.get("cpi").get("viewability_rate")
+        mapping[str(testData.get("width")) + ":" + str(testData.get("height")) + "_performance"] = testData.get("cpi").get("performance")
+        # mapping["viewability_rate"] = testData.get("cpi").get("viewability_rate")
         key = testData.get("domainId")
         cache = "core-dev-bidder-price-optimize.pid24g.clustercfg.usw2.cache.amazonaws.com"
         # cache = "core-dev-bidder-price.pid24g.clustercfg.usw2.cache.amazonaws.com"
@@ -128,8 +133,11 @@ class Automation():
         for i in range(0,len(getChecks)):
             times =  getChecks[i]
             dt = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())*1000 - times *60000
+            # 10:20 AM 1660000000 -(-1)*60000
+            # 10:20 AM 1660000000 -(1)*60000
+
             mapping[str(testData.get("advertiserId")+i)] = dt
-        if testData.get("objectiveId") == 5:
+        if "vast" in testData.get("recency_type") :
             key = testData.get("ip")+"_vast"
         else:
             key = testData.get("ip")

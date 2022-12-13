@@ -1,0 +1,264 @@
+bid_request {
+  id: "196.67.67.127"
+  imp {
+    id: "196.67.67.127"
+    banner {
+      w : 975
+      h : 876
+      pos: FOOTER
+      btype: XHTML_TEXT
+      battr: AUDIO_AUTO_PLAY
+      battr: AUDIO_USER_INITIATED
+      battr: EXPANDABLE_AUTOMATIC
+      battr: EXPANDABLE_ROLLOVER_INITIATED
+      battr: VIDEO_IN_BANNER_AUTO_PLAY
+      battr: VIDEO_IN_BANNER_USER_INITIATED
+      battr: POP_UP
+      battr: PROVOCATIVE_OR_SUGGESTIVE
+      battr: TEXT_ONLY
+      battr: USER_INTERACTIVE
+      battr: WINDOWS_DIALOG_OR_ALERT_STYLE
+      battr: HAS_AUDIO_ON_OFF_BUTTON
+      battr: AD_CAN_EXPAND_LEFT
+      battr: AD_CAN_EXPAND_RIGHT
+      battr: AD_CAN_EXPAND_UP
+      battr: AD_CAN_EXPAND_DOWN
+      battr: AD_CAN_EXPAND_FULLSCREEN
+      api: MRAID_2
+      api: MRAID
+    }
+    displaymanager: "millennial"
+    displaymanagerver: "6.1.0-5323db4"
+    instl: NO
+    bidfloor: 6.18
+    ext {
+      placement_type: BANNER
+      environment_type: APP
+      viewability {
+        predicted_viewability: 0
+      }
+    }
+  }
+  app {
+      bundle:"kom.googlemn.online"
+  }
+  site {
+    publisher {
+      id: ""
+      name: "xyz"
+      domain:"kom.googlemn.online"
+      ext {
+      }
+    }
+  }
+  device {
+    dnt: NO
+    ua: "Mozilla/5.0 (Linux; Android 5.1.1; SM-G360T1 Build/LMY47X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.124 Mobile Safari/537.36"
+      ip:"196.99.98.935"
+    geo {
+      lat: 45.5269
+      lon: -122.8573
+      country: "USA"
+      region: "OR"
+      metro: "820"
+      zip: "97006"
+      type: IP
+    }
+    carrier: "WIFI"
+    language: "en"
+    make: "Samsung"
+    model: "-1"
+    os: "Android"
+    osv: "5.1"
+    js: YES
+    connectiontype: WIFI
+    devicetype: PHONE
+    lmt: false
+    hwv: "SM-G360T1"
+    ppi: 240
+    ifa: "1bb22640-b067-4418-9a90-3ce74453ca87"
+    ext {
+      augmented_device_screen_size: "NA"
+      augmented_browser: "-1"
+      augmented_browser_version: "53"
+    }
+  }
+  user {
+    id: "1bb22640-b067-4418-9a90-3ce74453ca87"
+    geo {
+      country: "USA"
+      region: "USA/OR"
+      metro: "820"
+      city: "5731371"
+      zip: "97124"
+      type: USER
+    }
+    data {
+      id: "stinger"
+      segment {
+        id: "stinger-807"
+        value: ""
+      }
+      ext {
+        beeswax_augmented: true
+      }
+    }
+    ext {
+      user_id: "mid.1BB22640-B067-4418-9A90-3CE74453CA87"
+      user_id_type: AD_ID
+    }
+  }
+  at: 2
+  bcat: "IAB22_1"
+  bcat: "IAB23"
+  bcat: "IAB19_25"
+  bcat: "IAB7_29"
+  bcat: "IAB7_28"
+  bcat: "IAB7_45"
+  bcat: "IAB7_44"
+  bcat: "IAB26"
+  bcat: "IAB25"
+  bcat: "IAB24"
+  bcat: "IAB7_30"
+  bcat: "IAB7_31"
+  bcat: "IAB7_38"
+  bcat: "IAB7_18"
+  bcat: "IAB7_39"
+  bcat: "IAB19_30"
+  bcat: "IAB7_41"
+  bcat: "IAB7_42"
+  bcat: "IAB19_3"
+  bcat: "IAB7_3"
+  bcat: "IAB14_3"
+  bcat: "IAB14_2"
+  bcat: "IAB14_1"
+  bcat: "IAB15_5"
+  bcat: "IAB9_9"
+  badv: "drinkbai.com"
+  badv: "wordbrain.com"
+  badv: "harryconnickjr.com"
+  badv: "ifunny.co"
+  badv: "cm.best-thing.eu"
+  badv: "wordox.com"
+  badv: "fanatee.com"
+  badv: "maginteractive.com"
+  badv: "scopely.com"
+  badv: "badoo.com"
+  badv: "dicewithbuddies.com"
+  badv: "pg.com"
+  badv: "californialottery.com"
+  badv: "classesusa.com"
+  badv: "apprope.com"
+  badv: "fogs.com"
+  badv: "abc.com"
+  badv: "zynga.com"
+  badv: "peakgames.net"
+  badv: "mediasmart.com"
+  badv: "etermax.com"
+  badv: "puzzlesocial.com"
+  badv: "triviacrack.com"
+  badv: "yahtzeewithbuddies.com"
+  regs {
+    coppa: NO
+  }
+  ext {
+    inventory_source: MILLENNIAL
+    auction_id {
+      hostid: 12966349
+      tid: 12891
+      timestamp: 1475209787191604
+    }
+    targeting_geo {
+      country: "USA"
+      region: "USA/OR"
+      city: "5731371"
+      zip: "97124"
+      metro: "820"
+      lat_long_present: true
+      lat: 45.5269
+      lon: -122.8573
+      type: IP
+    }
+    time_of_week: 7229
+    buzz_key: "stinger"
+    augmentor_data {
+      id: "BW_Managed_List"
+      segment {
+        id: "app_id_list"
+        value: "32"
+      }
+      segment {
+        id: "app_id_list"
+        value: "50"
+      }
+      segment {
+        id: "app_id_list"
+        value: "44"
+      }
+      segment {
+        id: "app_id_list"
+        value: "31"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "33"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "36"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "8"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "13"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "15"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "19"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "22"
+      }
+      segment {
+        id: "app_bundle_list"
+        value: "25"
+      }
+    }
+    auctionid_str: "1475209787191604.12966349.12891.stinger"
+  }
+}
+adcandidates {
+      line_item_id : 5925
+      creative_ids : 9936
+  bidding {
+    custom_strategy {
+      name: "FLAT_PRICE_STRATEGY"
+      custom_params{
+        key: "flat_price_micros_usd"
+        value: "1150"
+      }
+    }
+  }
+  pacing {
+    pace_delivery: true
+  }
+      campaign_id : 99536
+  account_id: 2
+  buzz_key: "stinger"
+      advertiser_id : 99930
+  campaign_frequency_caps_info {
+    frequency_cap {
+      max_impressions: 3
+      duration_seconds: 86400
+      current_impression_count: 0
+    }
+  }
+}

@@ -1,0 +1,9 @@
+AutomationTestCaseId , TestResults  ,  Pass/Fail
+BidderViewabilityThresholdEqualto1 , (200, 5920, 1090) , Pass
+BidderViewabilityThresholdEqualto0 , (200, 5921, 1090) , Pass
+BidderViewabilityThresholdEqualto5 , (200, 5922, 1090) , Pass
+BidderViewabilityThresholdGreaterThanScore , (204, 0, 0) , Pass
+BidderViewabilityThresholdLessThenScore , (200, 5924, 1090) , Pass
+BidderViewabilityThresholdEqualtoScore , (200, 5925, 1090) , Pass
+BidderViewabilityScoreLesstheTh&ViewabilityTHnotmet , (204, 0, 0) , Pass
+BidderViewabilityAndHouseHoldScoreLesstheTh , (204, 0, 0) , Pass
