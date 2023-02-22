@@ -1,1 +1,9 @@
 AugmentorTest1
+AugmentorTest2
+AugmentorTestNoSegmentMntn
+AugmentorTestNoSegmentBeeswax
+AugmentorTestNoIp
+AugmentorTestmultipleSegments
+AugmentorTestmultipleSegmentsNoMapping
+AugmentorTestEmptySegments
+AugmentorTest3
