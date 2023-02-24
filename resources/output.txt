@@ -1,5 +1,21 @@
-<Status> [404] Not Found
+<Status> [200] OK
 <Response headers>
-{'Cache-Control': 'must-revalidate,no-cache,no-store', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'}
+{'Date': 'Fri, 24 Feb 2023 16:37:39 GMT', 'Content-Type': 'application/x-protobuf', 'X-Protobuf-Schema': 'beeswax/bid/request.proto', 'X-Protobuf-Message': 'bid.BidAgentResponse', 'Transfer-Encoding': 'chunked'}
+
+<Bid Agent Response>
+bids {
+  line_item_id: 5925
+  agent_data {
+    agent_params {
+      key: "geo_location"
+      string_value: " "
+    }
+    agent_params {
+      key: "household_score"
+      string_value: "1234"
+    }
+  }
+  bid_price_micros: 99
+}
 
 ===

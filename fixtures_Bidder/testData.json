@@ -2343,5 +2343,117 @@
 			"price": 99,
 			"statusCode": 200
 		}
+	},
+	"BidderGeoLocationSettoavalue": {
+		"ip": "196.99.98.932",
+		"domainId": "kom.googlemq.online",
+		"campaignid": 99533,
+		"creativeId": 9933,
+		"advertiserId": 99928,
+		"width": 975,
+		"height": 876,
+		"recency_type": "",
+		"recency": [-11],
+		"lineItemId": 5925,
+		"objectiveId": 6,
+		"channelId": 8,
+		"paceMultipler": 1,
+		"Thresholds": {
+			"publisher": 0,
+			"household": 0,
+			"recency": 0,
+			"viewability": 0,
+			"performance": 20
+		},
+		"scores": {
+			"household_score": 0,
+			"geo_location":"123"
+		},
+		"cpi": {
+			"avg_cpi": 99,
+			"min_cpi": 980,
+			"max_cpi": 999,
+			"viewability_rate": 0,
+			"performance": 0
+		},
+		"expectedResult": {
+			"price": 99,
+			"statusCode": 200
+		}
+	},
+	"BidderGeoLocationSettoavalue0": {
+		"ip": "196.99.98.931",
+		"domainId": "kom.googlemr.online",
+		"campaignid": 99531,
+		"creativeId": 9931,
+		"advertiserId": 99927,
+		"width": 975,
+		"height": 876,
+		"recency_type": "",
+		"recency": [-11],
+		"lineItemId": 5925,
+		"objectiveId": 6,
+		"channelId": 8,
+		"paceMultipler": 1,
+		"Thresholds": {
+			"publisher": 0,
+			"household": 0,
+			"recency": 0,
+			"viewability": 0,
+			"performance": 20
+		},
+		"scores": {
+			"household_score": 0,
+			"geo_location":"0"
+		},
+		"cpi": {
+			"avg_cpi": 99,
+			"min_cpi": 980,
+			"max_cpi": 999,
+			"viewability_rate": 0,
+			"performance": 0
+		},
+		"expectedResult": {
+			"price": 99,
+			"statusCode": 200
+		}
+	},
+	"BidderGeoLocationSettoavalueEmpty": {
+		"ip": "196.99.98.930",
+		"domainId": "kom.googlems.online",
+		"campaignid": 99531,
+		"creativeId": 9931,
+		"advertiserId": 99927,
+		"width": 975,
+		"height": 876,
+		"recency_type": "",
+		"recency": [-11],
+		"lineItemId": 5925,
+		"objectiveId": 6,
+		"channelId": 8,
+		"paceMultipler": 1,
+		"Thresholds": {
+			"publisher": 0,
+			"household": 0,
+			"recency": 0,
+			"viewability": 0,
+			"performance": 20
+		},
+		"scores": {
+			"household_score": 1234,
+			"geo_location":" "
+		},
+		"cpi": {
+			"avg_cpi": 99,
+			"min_cpi": 980,
+			"max_cpi": 999,
+			"viewability_rate": 0,
+			"performance": 0
+		},
+		"expectedResult": {
+			"price": 99,
+			"statusCode": 200
+		}
 	}
+
 }

@@ -153,9 +153,14 @@ class Automation():
             testData = data.get(self.test)
         createNewJsonObject = {"mapping": {}}
         mapping = createNewJsonObject["mapping"]
+        if len(testData.get("scores")) > 1:
+            mapping["geo_location"] = testData.get("scores").get("geo_location")
         mapping["household_score"] = testData.get("scores").get("household_score")
+        # mapping["geo_location"] = "123456789"
         key = testData.get("ip")
-        cache = "core-dev-household-score.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        #  redis://rtb-dev-device-info.pid24g.clustercfg.usw2.cache.amazonaws.com
+        cache = "rtb-dev-device-info.pid24g.clustercfg.usw2.cache.amazonaws.com"
+        # cache = "core-dev-household-score.pid24g.clustercfg.usw2.cache.amazonaws.com"
         print(key, createNewJsonObject, cache)
         return key,createNewJsonObject,cache
 
